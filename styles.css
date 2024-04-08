@@ -1,11 +1,7 @@
-input[type="text"], select {
-  margin-bottom: 10px;
-  padding: 5px;
-  border: 1px solid #ccc;
-}
-input[type="text"].empty {
+.error {
   border: 1px solid red;
 }
-input[type="text"].filled {
+
+.success {
   border: 1px solid green;
 }
