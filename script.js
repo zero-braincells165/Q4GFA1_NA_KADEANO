@@ -1,33 +1,25 @@
-function checkInput(input) {
+function validateInput(input) {
   if (input.value.trim() === "") {
-    input.classList.remove("filled");
-    input.classList.add("empty");
+    input.classList.add("error");
   } else {
-    input.classList.remove("empty");
-    input.classList.add("filled");
+    input.classList.remove("error");
+    input.classList.add("success");
   }
 }
 
-function highlightInput(input) {
-  input.classList.remove("empty");
-  input.classList.add("filled");
-}
-
-function submitForm() {
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const gender = document.getElementById("gender").value;
-  
-  const outputDiv = document.getElementById("output");
-  outputDiv.innerHTML = `
-    <p>Name: ${name}</p>
-    <p>Email: ${email}</p>
-    <p>Gender: ${gender}</p>
-  `;
-}
-
-function resetForm() {
+function clearForm() {
   document.getElementById("signupForm").reset();
-  const outputDiv = document.getElementById("output");
-  outputDiv.innerHTML = "";
+  document.getElementById("output").innerHTML = "";
 }
+
+document.getElementById("signupForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+  var outputDiv = document.getElementById("output");
+  outputDiv.innerHTML = "";
+  var formData = new FormData(this);
+  var userInfo = "<h2>Submitted Information:</h2>";
+  for (var pair of formData.entries()) {
+    userInfo += "<p><strong>" + pair[0] + ":</strong> " + pair[1] + "</p>";
+  }
+  outputDiv.innerHTML = userInfo;
+});
