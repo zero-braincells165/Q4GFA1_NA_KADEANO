@@ -16,9 +16,8 @@ document.getElementById("signupForm").addEventListener("submit", function(event)
   event.preventDefault();
   var formData = new FormData(this);
   var userInfo = "<h2>Submitted Information:</h2>";
-  for (var pair of formData.entries()) {
-    var label = document.querySelector('label[for="' + pair[0] + '"]').textContent;
-    userInfo += "<p><strong>" + label + ":</strong> " + pair[1] + "</p>";
-  }
+  formData.forEach(function(value, key) {
+    userInfo += "<p><strong>" + key + ":</strong> " + value + "</p>";
+  });
   document.getElementById("output").innerHTML = userInfo;
 });
