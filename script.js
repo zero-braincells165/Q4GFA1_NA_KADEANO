@@ -3,11 +3,15 @@ const outputDiv = document.getElementById('output');
 
 form.addEventListener('submit', function(event) {
   event.preventDefault();
-  const formData = new FormData(form);
-  const userData = {};
-  for (const [key, value] of formData.entries()) {
-    userData[key] = value;
-  }
+  const userData = {
+    'Name': form.elements['name'].value,
+    'Preferred Username': form.elements['username'].value,
+    'Password': form.elements['password'].value,
+    'Email': form.elements['email'].value,
+    'Address': form.elements['address'].value,
+    'Interests': form.elements['interests'].value,
+    'Gender': form.elements['gender'].value
+  };
   displayUserData(userData);
 });
 
