@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Sign-up Sheet</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+
+<form id="signupForm">
+  <fieldset>
+    <legend>Sign-up Information</legend>
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" onblur="checkInput(this)" onfocus="highlightInput(this)"><br>
+    
+    <label for="email">Email:</label><br>
+    <input type="text" id="email" onblur="checkInput(this)" onfocus="highlightInput(this)"><br>
+    
+    <label for="gender">Gender:</label><br>
+    <select id="gender">
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Prefer not to mention">Prefer not to mention</option>
+    </select><br>
+  </fieldset>
+  
+  <button type="button" onclick="submitForm()">Submit</button>
+  <button type="button" onclick="resetForm()">Reset</button>
+</form>
+
+<div id="output"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
