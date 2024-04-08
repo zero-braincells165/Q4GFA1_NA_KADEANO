@@ -17,11 +17,11 @@ form.addEventListener('reset', function() {
 
 function displayUserData(userData) {
   let outputHtml = '<h2>Submitted Information:</h2>';
-  outputHtml += '<ul>';
+  outputHtml += '<p>';
   for (const key in userData) {
-    outputHtml += `<li><strong>${key}:</strong> ${userData[key]}</li>`;
+    outputHtml += `<strong>${key}:</strong> ${userData[key]}<br>`;
   }
-  outputHtml += '</ul>';
+  outputHtml += '</p>';
   outputDiv.innerHTML = outputHtml;
 }
 
