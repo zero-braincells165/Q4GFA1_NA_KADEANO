@@ -1,25 +1,41 @@
-function validateInput(input) {
-  if (input.value.trim() === "") {
-    input.classList.add("error");
-  } else {
-    input.classList.remove("error");
-    input.classList.add("success");
-  }
-}
+const form = document.getElementById('signupForm');
+const outputDiv = document.getElementById('output');
 
-function clearForm() {
-  document.getElementById("signupForm").reset();
-  document.getElementById("output").innerHTML = "";
-  document.getElementById("submittedInfo").style.display = "none";
-}
-
-document.getElementById("signupForm").addEventListener("submit", function(event) {
+form.addEventListener('submit', function(event) {
   event.preventDefault();
-  var formData = new FormData(this);
-  var userInfo = "<h2>Submitted Information:</h2>";
-  formData.forEach(function(value, key) {
-    userInfo += "<p><strong>" + key + ":</strong> " + value + "</p>";
+  const formData = new FormData(form);
+  const userData = {};
+  for (const [key, value] of formData.entries()) {
+    userData[key] = value;
+  }
+  displayUserData(userData);
+});
+
+form.addEventListener('reset', function() {
+  outputDiv.innerHTML = '';
+});
+
+function displayUserData(userData) {
+  let outputHtml = '<h2>Submitted Information:</h2>';
+  outputHtml += '<ul>';
+  for (const key in userData) {
+    outputHtml += `<li><strong>${key}:</strong> ${userData[key]}</li>`;
+  }
+  outputHtml += '</ul>';
+  outputDiv.innerHTML = outputHtml;
+}
+
+const inputFields = form.querySelectorAll('input, textarea, select');
+inputFields.forEach(field => {
+  field.addEventListener('blur', function() {
+    if (field.value === '') {
+      field.classList.add('error');
+    } else {
+      field.classList.remove('error');
+      field.classList.add('success');
+    }
   });
-  document.getElementById("output").innerHTML = userInfo;
-  document.getElementById("submittedInfo").style.display = "block";
+  field.addEventListener('focus', function() {
+    field.classList.remove('error', 'success');
+  });
 });
