@@ -14,11 +14,10 @@ function clearForm() {
 
 document.getElementById("signupForm").addEventListener("submit", function(event) {
   event.preventDefault();
-  var outputDiv = document.getElementById("output");
   var formData = new FormData(this);
   var userInfo = "<h2>Submitted Information:</h2>";
   for (var pair of formData.entries()) {
     userInfo += "<p><strong>" + pair[0] + ":</strong> " + pair[1] + "</p>";
   }
-  outputDiv.innerHTML += userInfo;
+  document.getElementById("output").innerHTML = userInfo;
 });
